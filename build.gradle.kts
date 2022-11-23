@@ -15,6 +15,10 @@ repositories {
     mavenCentral()
 }
 
+val kotestVersion = "5.5.4"
+val kotestExtVersion = "1.1.2"
+val fixtureMonkeyVersion = "0.4.5"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -24,6 +28,16 @@ dependencies {
     implementation("org.apache.commons:commons-csv:1.9.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // kotest
+    testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
+    testImplementation("io.kotest:kotest-property:$kotestVersion")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:$kotestExtVersion")
+
+    // fixture-monkey
+    implementation("com.navercorp.fixturemonkey:fixture-monkey-jackson:$fixtureMonkeyVersion")
+    implementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:$fixtureMonkeyVersion")
 }
 
 tasks.withType<KotlinCompile> {
