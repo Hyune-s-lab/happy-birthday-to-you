@@ -6,9 +6,9 @@ import java.time.MonthDay
 
 @Component
 class MemberPool(private val members: HashMap<MonthDay, List<Member>> = HashMap()) {
-    fun reset(newNembers: Map<MonthDay, List<Member>>) {
+    fun reset(newMembers: Map<MonthDay, List<Member>>) {
         members.clear()
-        members.putAll(newNembers)
+        members.putAll(newMembers)
     }
 
     fun find(): List<Member> {
@@ -16,10 +16,10 @@ class MemberPool(private val members: HashMap<MonthDay, List<Member>> = HashMap(
     }
 
     fun find(month: Month): List<Member> {
-        return members.filter { MonthDay.now().month == it.key.month }.values.flatten()
+        return members.filter { month == it.key.month }.values.flatten()
     }
 
     fun find(monthDay: MonthDay): List<Member> {
-        return members.filter { MonthDay.now() == it.key }.values.flatten()
+        return members.filter { monthDay == it.key }.values.flatten()
     }
 }
