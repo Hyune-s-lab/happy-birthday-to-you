@@ -31,6 +31,9 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    // m1 에서 실행시 오류 해결
+    implementation("io.netty:netty-resolver-dns-native-macos:4.1.85.Final:osx-aarch_64")
+
     // kotest
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core:$kotestVersion")
