@@ -18,6 +18,7 @@ repositories {
 val kotestVersion = "5.5.4"
 val kotestExtVersion = "1.1.2"
 val fixtureMonkeyVersion = "0.4.5"
+val openapi3Version = "1.6.13"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
@@ -33,6 +34,11 @@ dependencies {
 
     // m1 에서 실행시 오류 해결
     implementation("io.netty:netty-resolver-dns-native-macos:4.1.85.Final:osx-aarch_64")
+
+    // openapi3
+    implementation("org.springdoc:springdoc-openapi-ui:$openapi3Version")
+    implementation("org.springdoc:springdoc-openapi-webflux-ui:$openapi3Version")
+    implementation("org.springdoc:springdoc-openapi-kotlin:$openapi3Version")
 
     // kotest
     testImplementation("io.kotest:kotest-runner-junit5:$kotestVersion")
