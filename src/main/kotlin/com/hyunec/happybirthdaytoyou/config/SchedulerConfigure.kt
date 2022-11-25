@@ -23,7 +23,12 @@ class SchedulerConfigure(
         val thisMonth = MonthDay.now().month
         val members = memberPool.find(thisMonth)
         val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("FIRST_DAY_OF_MONTH")
-        val names = members.map { mapOf("\$name" to it.name) }
+        val names = members.map {
+            mapOf(
+                "\$name" to it.name,
+                "\$birthday" to "${it.birthday.monthValue}-${it.birthday.dayOfMonth}"
+            )
+        }
 
         if (names.isNotEmpty()) {
             incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))

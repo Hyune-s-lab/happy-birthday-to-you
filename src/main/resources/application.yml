@@ -8,5 +8,5 @@ slack:
     - name: FIRST_DAY_OF_MONTH
       key: ${SLACK_WEBHOOK_KEY_FIRST_DAY_OF_MONTH}
       header: ">:love_letter:이달의 생일 미리 알림이 도착했어요:love_letter:"
-      body: ">                    :gift: *$name* 님"
+      body: ">                    :gift: *$name* 님 ($birthday)"
       footer: ">:love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter:"
