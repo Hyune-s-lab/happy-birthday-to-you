@@ -1,6 +1,7 @@
 slack:
   webhook:
-    - name: test
-      key: ${SLACK_WEBHOOK_KEY_TEST}
-      format: '$name 님 생일 축하 합니다.'
-
+    - name: TODAY
+      key: ${SLACK_WEBHOOK_KEY_TODAY}
+      header: "> :star::star::star::star::star:  축  :star::star::star::star::star:"
+      body: ">:tada:  오늘은 사랑하는 *$name* 님 생일:tada:"
+      footer: ">:purple_heart::purple_heart::purple_heart::purple_heart:축하합니다:purple_heart::purple_heart::purple_heart::purple_heart:"

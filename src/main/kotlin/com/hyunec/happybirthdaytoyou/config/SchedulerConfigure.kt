@@ -18,35 +18,35 @@ class SchedulerConfigure(
      * 매 월 첫째날 9시
      */
     @Scheduled(cron = "0 0 9 1 * *")
-//    @Scheduled(cron = "* * * * * *") // 1초 단위로 실행
+//    @Scheduled(cron = "0/5 * * * * *") // 5초 단위로 실행
     fun everyFirstDayOfMonth() {
         val thisMonth = MonthDay.now().month
         val members = memberPool.find(thisMonth)
-        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("test")
-        members.forEach { m ->
-            val printString = slackWebhook.printString(mapOf("\$name" to m.name))
-            incomingWebhookSender.send(slackWebhook.key, printString)
-                .doOnSuccess { log.info("### $thisMonth=${m.name}") }
-                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
-                .subscribe()
-        }
+        //        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("test")
+        //        members.forEach { m ->
+        //            val printString = slackWebhook.printString(mapOf("\$name" to m.name))
+        //            incomingWebhookSender.send(slackWebhook.key, printString)
+        //                .doOnSuccess { log.info("### $today=${m.name}") }
+        //                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+        //                .subscribe()
+        //        }
     }
 
     /**
      * 매일 9시
      */
     @Scheduled(cron = "0 0 9 * * *")
+//    @Scheduled(cron = "0/5 * * * * *") // 5초 단위로 실행
     fun everyDay() {
         val today = MonthDay.now()
         val members = memberPool.find(today)
-        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("test")
-        members.forEach { m ->
-            val printString = slackWebhook.printString(mapOf("\$name" to m.name))
-            incomingWebhookSender.send(slackWebhook.key, printString)
-                .doOnSuccess { log.info("### $today=${m.name}") }
-                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
-                .subscribe()
-        }
+        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("TODAY")
+        val names = members.map { mapOf("\$name" to it.name) }
+
+        incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
+            .doOnSuccess { log.info("### $today=$names") }
+            .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+            .subscribe()
     }
 
     companion object {
