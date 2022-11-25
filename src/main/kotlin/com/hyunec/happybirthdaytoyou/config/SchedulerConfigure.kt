@@ -25,10 +25,14 @@ class SchedulerConfigure(
         val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("FIRST_DAY_OF_MONTH")
         val names = members.map { mapOf("\$name" to it.name) }
 
-        incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-            .doOnSuccess { log.info("### $thisMonth=$names") }
-            .doOnError { ex -> log.error("### ${ex.stackTrace}") }
-            .subscribe()
+        if (names.isNotEmpty()) {
+            incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
+                .doOnSuccess { log.info("### success $thisMonth=$names") }
+                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+                .subscribe()
+        }
+
+        log.info("### $thisMonth=$names")
     }
 
     /**
@@ -42,10 +46,14 @@ class SchedulerConfigure(
         val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("TODAY")
         val names = members.map { mapOf("\$name" to it.name) }
 
-        incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-            .doOnSuccess { log.info("### $today=$names") }
-            .doOnError { ex -> log.error("### ${ex.stackTrace}") }
-            .subscribe()
+        if (names.isNotEmpty()) {
+            incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
+                .doOnSuccess { log.info("### success $today=$names") }
+                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+                .subscribe()
+        }
+
+        log.info("### $today=$names")
     }
 
     companion object {
