@@ -22,14 +22,13 @@ class SchedulerConfigure(
     fun everyFirstDayOfMonth() {
         val thisMonth = MonthDay.now().month
         val members = memberPool.find(thisMonth)
-        //        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("test")
-        //        members.forEach { m ->
-        //            val printString = slackWebhook.printString(mapOf("\$name" to m.name))
-        //            incomingWebhookSender.send(slackWebhook.key, printString)
-        //                .doOnSuccess { log.info("### $today=${m.name}") }
-        //                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
-        //                .subscribe()
-        //        }
+        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("FIRST_DAY_OF_MONTH")
+        val names = members.map { mapOf("\$name" to it.name) }
+
+        incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
+            .doOnSuccess { log.info("### $thisMonth=$names") }
+            .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+            .subscribe()
     }
 
     /**
