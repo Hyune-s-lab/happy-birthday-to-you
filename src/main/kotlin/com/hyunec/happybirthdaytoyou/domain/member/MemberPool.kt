@@ -5,21 +5,21 @@ import java.time.Month
 import java.time.MonthDay
 
 @Component
-class MemberPool(private val members: HashMap<MonthDay, List<Member>> = HashMap()) {
-    fun reset(newMembers: Map<MonthDay, List<Member>>) {
+class MemberPool(private val members: HashMap<MonthDay, Set<Member>> = HashMap()) {
+    fun reset(newMembers: Map<MonthDay, Set<Member>>) {
         members.clear()
         members.putAll(newMembers)
     }
 
-    fun find(): List<Member> {
-        return members.values.flatten()
+    fun find(): Set<Member> {
+        return members.values.flatten().toSet()
     }
 
-    fun find(month: Month): List<Member> {
-        return members.filter { month == it.key.month }.values.flatten()
+    fun find(month: Month): Set<Member> {
+        return members.filter { month == it.key.month }.values.flatten().toSet()
     }
 
-    fun find(monthDay: MonthDay): List<Member> {
-        return members.filter { monthDay == it.key }.values.flatten()
+    fun find(monthDay: MonthDay): Set<Member> {
+        return members.filter { monthDay == it.key }.values.flatten().toSet()
     }
 }
