@@ -32,8 +32,8 @@ class SchedulerConfigure(
 
         if (names.isNotEmpty()) {
             incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-                .doOnSuccess { log.info("### success $thisMonth=$names") }
-                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+                .doOnSuccess { log.info("### success everyFirstDayOfMonth: $thisMonth=$names") }
+                .doOnError { log.error("### failed everyFirstDayOfMonth: $it") }
                 .subscribe()
         }
 
@@ -53,8 +53,8 @@ class SchedulerConfigure(
 
         if (names.isNotEmpty()) {
             incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-                .doOnSuccess { log.info("### success $today=$names") }
-                .doOnError { ex -> log.error("### ${ex.stackTrace}") }
+                .doOnSuccess { log.info("### success everyDay: $today=$names") }
+                .doOnError { log.error("### failed everyDay: $it") }
                 .subscribe()
         }
 
