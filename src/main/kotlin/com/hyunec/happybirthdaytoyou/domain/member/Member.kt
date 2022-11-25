@@ -4,5 +4,9 @@ import java.time.MonthDay
 
 data class Member(
     val birthday: MonthDay,
-    val name: String
-)
+    val name: String,
+) {
+    fun csvFormmating(): String {
+        return "$name,$birthday"
+    }
+}
