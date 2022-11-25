@@ -1,1 +1,6 @@
+slack:
+  webhook:
+    - name: test
+      key: ${SLACK_WEBHOOK_KEY_TEST}
+      format: '$name 님 생일 축하 합니다.'
 
