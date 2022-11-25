@@ -18,8 +18,7 @@ class CsvComponent {
         records.forEach { record ->
             val name = record[0]
             val birthDay = MonthDay.parse(record[1])
-            members[birthDay] = members[birthDay] ?: (setOf(Member(birthDay, name))
-                    union setOf(Member(birthDay, name)))
+            members[birthDay] = (members[birthDay] ?: setOf(Member(birthDay, name))) union setOf(Member(birthDay, name))
         }
 
         return members
