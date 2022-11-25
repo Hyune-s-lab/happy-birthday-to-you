@@ -1,0 +1,11 @@
+version: "3"
+services:
+  happy-birthday-to-you:
+    image: happy-birthday-to-you
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: "Asia/Seoul"
+      SLACK_WEBHOOK_KEY_TODAY: ${SLACK_WEBHOOK_KEY_TODAY}
+      SLACK_WEBHOOK_KEY_FIRST_DAY_OF_MONTH: ${SLACK_WEBHOOK_KEY_FIRST_DAY_OF_MONTH}
