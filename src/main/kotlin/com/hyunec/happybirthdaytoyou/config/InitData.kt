@@ -19,6 +19,7 @@ class InitData(
         memberPool.reset(newMembers)
 
         log.info("### initData success. memberSize=${memberPool.find().size}")
+        log.info("### initData success. member=${memberPool.find()}")
     }
 
     companion object {
