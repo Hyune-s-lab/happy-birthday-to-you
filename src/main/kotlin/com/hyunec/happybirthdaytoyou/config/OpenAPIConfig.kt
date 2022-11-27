@@ -13,9 +13,11 @@ class OpenAPIConfig {
     fun openAPI(): OpenAPI {
         val servers: List<Server> = listOf(Server().url("http://localhost:8080"))
         return OpenAPI()
-            .info(Info()
-                .title("Happy birthday to you")
-                .version(LocalDateTime.now().toString()))
+            .info(
+                Info()
+                    .title("Happy birthday to you")
+                    .version(LocalDateTime.now().toString())
+            )
             .servers(servers)
     }
 }

@@ -9,13 +9,12 @@ data class SlackWebhookProperty(
 ) {
     fun printString(delimiters: List<Map<String, String>>): String {
         return "$header\n" +
-                delimiters.fold("")
-                { result, maps -> "$result${generateBody(maps)}\n" } +
-                footer
+            delimiters.fold("") { result, maps -> "$result${generateBody(maps)}\n" } +
+            footer
     }
 
     private fun generateBody(delimiters: Map<String, String>): String {
-        return delimiters.keys.fold(body)
-        { result, key -> result.replace(key, delimiters[key]!!) }
+        return delimiters.keys
+            .fold(body) { result, key -> result.replace(key, delimiters[key]!!) }
     }
 }
