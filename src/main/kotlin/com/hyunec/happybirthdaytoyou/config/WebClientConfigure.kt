@@ -8,9 +8,6 @@ import org.springframework.web.reactive.function.client.WebClient
 class WebClientConfigure {
 
     @Bean
-    fun webClient(): WebClient {
-        return WebClient.builder()
-            .baseUrl("https://hooks.slack.com/services/")
-            .build()
-    }
+    fun webClient(): WebClient =
+        WebClient.builder().baseUrl("https://hooks.slack.com/services/").build()
 }

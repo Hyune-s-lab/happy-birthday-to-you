@@ -10,14 +10,12 @@ import java.time.LocalDateTime
 @Configuration
 class OpenAPIConfig {
     @Bean
-    fun openAPI(): OpenAPI {
-        val servers: List<Server> = listOf(Server().url("http://localhost:8080"))
-        return OpenAPI()
-            .info(
-                Info()
-                    .title("Happy birthday to you")
-                    .version(LocalDateTime.now().toString())
+    fun openAPI(): OpenAPI =
+        OpenAPI().info(
+            Info().title("Happy birthday to you").version(LocalDateTime.now().toString())
+        ).servers(
+            listOf(
+                Server().url("http://localhost:8080")
             )
-            .servers(servers)
-    }
+        )
 }

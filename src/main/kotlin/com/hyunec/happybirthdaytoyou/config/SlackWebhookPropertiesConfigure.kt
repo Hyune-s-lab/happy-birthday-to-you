@@ -10,7 +10,6 @@ import org.springframework.context.annotation.PropertySource
 data class SlackWebhookPropertiesConfigure(
     val webhook: List<SlackWebhookProperty>,
 ) {
-    fun findWebhook(name: String): SlackWebhookProperty {
-        return webhook.first { it.name == name }
-    }
+    fun findWebhook(name: String): SlackWebhookProperty =
+        webhook.first { it.name == name }
 }

@@ -6,7 +6,6 @@ data class Member(
     val birthday: MonthDay,
     val name: String,
 ) {
-    fun csvFormmating(): String {
-        return "$name,$birthday"
-    }
+    fun csvFormmating(): String =
+        "$name,$birthday"
 }

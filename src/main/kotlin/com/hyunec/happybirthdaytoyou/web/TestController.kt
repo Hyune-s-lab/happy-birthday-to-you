@@ -10,9 +10,8 @@ import java.time.LocalDateTime
 class TestController {
 
     @GetMapping("/test/log")
-    fun log() {
+    fun log() =
         log.info("### ${LocalDateTime.now()}")
-    }
 
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)

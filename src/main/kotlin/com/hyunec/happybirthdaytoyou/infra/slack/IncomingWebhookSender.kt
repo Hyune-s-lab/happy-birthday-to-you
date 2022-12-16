@@ -16,7 +16,6 @@ class IncomingWebhookSender(private val webClient: WebClient) {
             .bodyToMono(String::class.java)
     }
 
-    fun send(webhookKey: String, text: String): Mono<String> {
-        return send(webhookKey, mapOf("text" to text))
-    }
+    fun send(webhookKey: String, text: String): Mono<String> =
+        send(webhookKey, mapOf("text" to text))
 }
