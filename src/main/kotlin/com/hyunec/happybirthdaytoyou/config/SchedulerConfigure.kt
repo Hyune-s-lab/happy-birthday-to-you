@@ -1,5 +1,7 @@
 package com.hyunec.happybirthdaytoyou.config
 
+import com.hyunec.happybirthdaytoyou.config.webhook.SlackWebhookPropertiesConfigure
+import com.hyunec.happybirthdaytoyou.config.webhook.SlackWebhookPropertyType
 import com.hyunec.happybirthdaytoyou.domain.member.MemberPool
 import com.hyunec.happybirthdaytoyou.infra.slack.IncomingWebhookSender
 import org.slf4j.Logger
@@ -22,22 +24,18 @@ class SchedulerConfigure(
     fun everyFirstDayOfMonth() {
         val thisMonth = MonthDay.now().month
         val members = memberPool.find(thisMonth)
-        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("FIRST_DAY_OF_MONTH")
-        val names = members.map {
-            mapOf(
-                "\$name" to it.name,
-                "\$birthday" to "${it.birthday.monthValue}-${it.birthday.dayOfMonth}"
-            )
-        }
+        val webhookType = SlackWebhookPropertyType.FIRST_DAY_OF_MONTH
+        val webhookProperty = slackWebhookPropertiesConfigure.findWebhook(webhookType)
+        val replaceStringsForBody = webhookType.replaceStringsForBody(members)
 
-        if (names.isNotEmpty()) {
-            incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-                .doOnSuccess { log.info("### success everyFirstDayOfMonth: $thisMonth=$names") }
+        if (replaceStringsForBody.isNotEmpty()) {
+            incomingWebhookSender.send(webhookProperty.key, webhookProperty.printString(replaceStringsForBody))
+                .doOnSuccess { log.info("### success everyFirstDayOfMonth: $thisMonth=$replaceStringsForBody") }
                 .doOnError { log.error("### failed everyFirstDayOfMonth: $it") }
                 .subscribe()
         }
 
-        log.info("### $thisMonth=$names")
+        log.info("### $thisMonth=$replaceStringsForBody")
     }
 
     /**
@@ -48,17 +46,18 @@ class SchedulerConfigure(
     fun everyDay() {
         val today = MonthDay.now()
         val members = memberPool.find(today)
-        val slackWebhook = slackWebhookPropertiesConfigure.findWebhook("TODAY")
-        val names = members.map { mapOf("\$name" to it.name) }
+        val webhookType = SlackWebhookPropertyType.TODAY
+        val webhookProperty = slackWebhookPropertiesConfigure.findWebhook(webhookType)
+        val replaceStringsForBody = webhookType.replaceStringsForBody(members)
 
-        if (names.isNotEmpty()) {
-            incomingWebhookSender.send(slackWebhook.key, slackWebhook.printString(names))
-                .doOnSuccess { log.info("### success everyDay: $today=$names") }
+        if (replaceStringsForBody.isNotEmpty()) {
+            incomingWebhookSender.send(webhookProperty.key, webhookProperty.printString(replaceStringsForBody))
+                .doOnSuccess { log.info("### success everyDay: $today=$replaceStringsForBody") }
                 .doOnError { log.error("### failed everyDay: $it") }
                 .subscribe()
         }
 
-        log.info("### $today=$names")
+        log.info("### $today=$replaceStringsForBody")
     }
 
     companion object {

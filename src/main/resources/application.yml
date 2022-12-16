@@ -1,12 +1,12 @@
 slack:
   webhook:
-    - name: TODAY
+    - type: TODAY
       key: ${SLACK_WEBHOOK_KEY_TODAY}
-      header: "> :star::star::star::star::star:  축  :star::star::star::star::star:"
-      body: ">:tada:  오늘은 사랑하는 *$name* 님 생일:tada:"
-      footer: ">:purple_heart::purple_heart::purple_heart::purple_heart:축하합니다:purple_heart::purple_heart::purple_heart::purple_heart:"
-    - name: FIRST_DAY_OF_MONTH
+      header-template: "> :star::star::star::star::star:  축  :star::star::star::star::star:"
+      body-template: ">:tada:  오늘은 사랑하는 *$name* 님 생일:tada:"
+      footer-template: ">:purple_heart::purple_heart::purple_heart::purple_heart:축하합니다:purple_heart::purple_heart::purple_heart::purple_heart:"
+    - type: FIRST_DAY_OF_MONTH
       key: ${SLACK_WEBHOOK_KEY_FIRST_DAY_OF_MONTH}
-      header: ">:love_letter:이달의 생일 미리 알림이 도착했어요:love_letter:"
-      body: ">                    :gift: *$name* 님 ($birthday)"
-      footer: ">:love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter:"
+      header-template: ">:love_letter:이달의 생일 미리 알림이 도착했어요:love_letter:"
+      body-template: ">                    :gift: *$name* 님 ($birthday)"
+      footer-template: ">:love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter::love_letter:"

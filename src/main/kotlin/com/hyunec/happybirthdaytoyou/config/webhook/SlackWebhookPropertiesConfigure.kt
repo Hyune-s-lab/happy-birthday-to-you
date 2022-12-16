@@ -1,4 +1,4 @@
-package com.hyunec.happybirthdaytoyou.config
+package com.hyunec.happybirthdaytoyou.config.webhook
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -10,6 +10,6 @@ import org.springframework.context.annotation.PropertySource
 data class SlackWebhookPropertiesConfigure(
     val webhook: List<SlackWebhookProperty>,
 ) {
-    fun findWebhook(name: String): SlackWebhookProperty =
-        webhook.first { it.name == name }
+    fun findWebhook(type: SlackWebhookPropertyType): SlackWebhookProperty =
+        webhook.first { it.type == type }
 }
