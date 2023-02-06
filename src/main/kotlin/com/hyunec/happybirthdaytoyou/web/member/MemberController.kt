@@ -2,6 +2,7 @@ package com.hyunec.happybirthdaytoyou.web.member
 
 import com.hyunec.happybirthdaytoyou.domain.member.Member
 import com.hyunec.happybirthdaytoyou.domain.member.MemberPool
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,5 +30,10 @@ class MemberController(private val memberPool: MemberPool) {
                 Member(MonthDay.parse(split[1]), split[0])
             }
             .forEach { memberPool.save(it) }
+    }
+
+    @DeleteMapping("/members/reset")
+    fun reset() {
+        memberPool.reset(HashMap())
     }
 }
