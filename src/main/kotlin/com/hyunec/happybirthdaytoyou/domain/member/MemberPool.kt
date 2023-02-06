@@ -22,4 +22,10 @@ class MemberPool(private val members: HashMap<MonthDay, Set<Member>> = HashMap()
     fun find(monthDay: MonthDay): Set<Member> {
         return members.filter { monthDay == it.key }.values.flatten().toSet()
     }
+
+    fun save(member: Member) {
+        members[member.birthday]?.let {
+            members.put(member.birthday, it union setOf(member))
+        } ?: members.put(member.birthday, setOf(member))
+    }
 }
