@@ -11,16 +11,16 @@ class MemberPool(private val members: HashMap<MonthDay, Set<Member>> = HashMap()
         members.putAll(newMembers)
     }
 
-    fun find(): Set<Member> {
-        return members.values.flatten().toSet()
+    fun find(): List<Member> {
+        return members.values.flatten().toSet().sortedBy { it.birthday }
     }
 
-    fun find(month: Month): Set<Member> {
-        return members.filter { month == it.key.month }.values.flatten().toSet()
+    fun find(month: Month): List<Member> {
+        return members.filter { month == it.key.month }.values.flatten().toSet().sortedBy { it.birthday }
     }
 
-    fun find(monthDay: MonthDay): Set<Member> {
-        return members.filter { monthDay == it.key }.values.flatten().toSet()
+    fun find(monthDay: MonthDay): List<Member> {
+        return members.filter { monthDay == it.key }.values.flatten().toSet().sortedBy { it.birthday }
     }
 
     fun save(member: Member) {

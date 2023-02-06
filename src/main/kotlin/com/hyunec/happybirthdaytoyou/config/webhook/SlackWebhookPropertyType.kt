@@ -4,7 +4,7 @@ import com.hyunec.happybirthdaytoyou.domain.member.Member
 
 enum class SlackWebhookPropertyType {
     FIRST_DAY_OF_MONTH {
-        override fun replaceStringsForBody(members: Set<Member>): List<Map<String, String>> {
+        override fun replaceStringsForBody(members: Collection<Member>): List<Map<String, String>> {
             return members.map {
                 mapOf(
                     "\$name" to it.name,
@@ -14,11 +14,11 @@ enum class SlackWebhookPropertyType {
         }
     },
     TODAY {
-        override fun replaceStringsForBody(members: Set<Member>): List<Map<String, String>> {
+        override fun replaceStringsForBody(members: Collection<Member>): List<Map<String, String>> {
             return members.map { mapOf("\$name" to it.name) }
         }
     },
     ;
 
-    abstract fun replaceStringsForBody(members: Set<Member>): List<Map<String, String>>
+    abstract fun replaceStringsForBody(members: Collection<Member>): List<Map<String, String>>
 }

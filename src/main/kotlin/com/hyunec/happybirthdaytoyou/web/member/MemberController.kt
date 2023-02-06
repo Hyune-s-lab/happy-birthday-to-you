@@ -12,7 +12,7 @@ import java.time.MonthDay
 @RestController
 class MemberController(private val memberPool: MemberPool) {
     @GetMapping("/members")
-    fun find(): Set<Member> {
+    fun find(): List<Member> {
         return memberPool.find()
     }
 
