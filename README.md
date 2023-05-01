@@ -9,7 +9,8 @@
 
 ### Feature
 
-> 비개발자도 excel export 등으로 관리할 수 있도록 csv 를 고려합니다.
+> 비개발자도 excel export 등으로 관리할 수 있도록 csv 를 고려합니다.  
+> AWS Lambda 를 사용할 수도 있지만, 관리 편의상 최소 비용의 서버를 사용합니다. - AWS Lightsail
 
 - 생일자 관리 - json & csv 형태의 조회 API
 
@@ -18,8 +19,6 @@
 - 생일자 관리 - csv 형태로 생일자 입력 API
 
 <img width="264" alt="image" src="https://user-images.githubusercontent.com/55722186/216890479-72064af7-ec08-4f33-a42e-b259691b2286.png">
-
-> AWS Lambda 를 사용할 수도 있지만, 관리 편의상 최소 비용의 서버를 사용합니다. - AWS Lightsail
 
 - 생일자 알림
     - 매월 1일 9시에 해당 월 생일자 알림
