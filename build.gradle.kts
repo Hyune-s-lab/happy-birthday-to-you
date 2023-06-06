@@ -16,10 +16,10 @@ repositories {
     mavenCentral()
 }
 
-val kotestVersion = "5.5.4"
-val kotestExtVersion = "1.1.2"
-val fixtureMonkeyVersion = "0.4.5"
-val openapi3Version = "1.6.13"
+val kotestVersion: String by project
+val kotestExtVersion: String by project
+val fixtureMonkeyVersion: String by project
+val openapi3Version: String by project
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
