@@ -119,7 +119,7 @@ replay_pid*
 ### Gradle ###
 .gradle
 **/build/
-!src/**/build/
+!api/admin-api/src/**/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

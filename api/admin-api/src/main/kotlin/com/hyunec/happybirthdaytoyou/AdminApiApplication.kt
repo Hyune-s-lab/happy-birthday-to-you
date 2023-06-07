@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @ConfigurationPropertiesScan
 @EnableScheduling
 @SpringBootApplication
-class HappyBirthdayToYouApplication
+class AdminApiApplication
 
 fun main(args: Array<String>) {
-    runApplication<HappyBirthdayToYouApplication>(*args)
+    runApplication<AdminApiApplication>(*args)
 }
